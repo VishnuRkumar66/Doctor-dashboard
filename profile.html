@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        cursor: url("https://cur.cursors-4u.net/cursors/cur-2/cur116.cur"), auto;
+      }
+    </style>
+  </head>
+  <body class="relative min-h-screen font-sans">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://media.istockphoto.com/id/1143688212/vector/graph-and-health-care-abstract-background.jpg?s=612x612&w=0&k=20&c=QnA9M9IgOefP4QaBBa0PZ4lrzHfT9t4tCb7_SxL66Rg="
+        alt="Background"
+        class="w-full h-full object-cover blur-sm brightness-50"
+      />
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10">
+      <!-- Navbar -->
+      <header
+        class="fixed top-0 left-0 w-full z-30 bg-blue-900/80 backdrop-blur-md text-white shadow-md"
+      >
+        <div
+          class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
+        >
+          <div class="flex items-center gap-3">
+            <h1 class="text-2xl font-semibold">Doctor's Dashboard</h1>
+          </div>
+          <nav
+            class="space-x-6 text-sm font-medium flex flex-wrap gap-3 sm:gap-6 justify-center sm:justify-start"
+          >
+            <a
+              href="dashboard.html"
+              class="hover:underline hover:text-yellow-300"
+              >Dashboard</a
+            >
+            <a
+              href="appointment.html"
+              class="hover:underline hover:text-yellow-300"
+              >Appointments</a
+            >
+            <a href="patient.html" class="hover:underline hover:text-yellow-300"
+              >Patients</a
+            >
+            <a
+              href="profile.html"
+              class="bg-yellow-300 text-blue-900 font-bold px-4 py-2 rounded-lg shadow-inner hover:bg-yellow-400 transition"
+              >Profile</a
+            >
+            <a href="index.html" class="hover:underline hover:text-yellow-300"
+              >Logout</a
+            >
+          </nav>
+        </div>
+      </header>
+
+      <!-- Hero Section -->
+      <section
+        class="flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 pt-32 md:pt-40 pb-16 gap-12"
+      >
+        <!-- Left Content (Glass card) -->
+        <div
+          class="md:w-1/2 text-center md:text-left space-y-6 text-white bg-white/20 backdrop-blur-lg p-8 rounded-2xl shadow-2xl ring-1 ring-white/30"
+        >
+          <p class="text-sm tracking-widest text-gray-200 uppercase">
+            Solutions for Better Health
+          </p>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+            Your <span class="text-blue-300">Health</span><br />
+            Our Priority
+          </h1>
+          <p class="max-w-md text-gray-100 mx-auto md:mx-0">
+            We are dedicated to putting your health at the forefront of
+            everything we do. Our compassionate team of healthcare professionals
+            is here for you.
+          </p>
+          <!-- Stats -->
+          <div
+            class="flex gap-6 mt-6 text-left justify-center md:justify-start"
+          >
+            <div>
+              <h3 class="text-2xl font-bold text-blue-200">50K+</h3>
+              <p class="text-sm text-gray-100">Patients Served</p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-blue-200">2M+</h3>
+              <p class="text-sm text-gray-100">Reports Delivered</p>
+            </div>
+            <div>
+              <h3 class="text-2xl font-bold text-blue-200">100+</h3>
+              <p class="text-sm text-gray-100">Expert Specialists</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Image -->
+        <div class="md:w-1/2 flex justify-center">
+          <img
+            src="images/doctor.png"
+            alt="Doctor"
+            class="w-[200px] md:w-[350px] lg:w-[350px] rounded-xl shadow-2xl object-contain"
+          />
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

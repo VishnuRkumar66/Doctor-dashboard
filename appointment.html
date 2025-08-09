@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+      * {
+        cursor: url("https://cur.cursors-4u.net/cursors/cur-2/cur116.cur"), auto;
+      }
+    </style>
+  </head>
+  <body class="relative font-sans min-h-screen overflow-x-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://media.istockphoto.com/id/1143688212/vector/graph-and-health-care-abstract-background.jpg?s=612x612&w=0&k=20&c=QnA9M9IgOefP4QaBBa0PZ4lrzHfT9t4tCb7_SxL66Rg="
+        alt="Healthcare background"
+        class="w-full h-full object-cover blur-sm brightness-75"
+      />
+    </div>
+
+    <!-- Foreground Content -->
+    <div class="relative z-10">
+      <!-- Navbar -->
+      <header
+        class="fixed top-0 left-0 w-full z-30 bg-blue-900/80 backdrop-blur-md text-white shadow-md"
+      >
+        <div
+          class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
+        >
+          <h1 class="text-2xl font-semibold">Doctor's Dashboard</h1>
+          <nav
+            class="flex flex-wrap items-center justify-center space-x-6 text-sm font-medium sm:space-x-6 space-y-2 sm:space-y-0"
+          >
+            <a
+              href="dashboard.html"
+              class="hover:underline hover:text-yellow-300 w-full sm:w-auto text-center"
+              >Dashboard</a
+            >
+
+            <a
+              href="appointment.html"
+              class="bg-yellow-300 text-blue-900 font-bold px-4 py-2 rounded-lg shadow-inner hover:bg-yellow-400 transition w-full sm:w-auto text-center"
+              >Appointment</a
+            >
+
+            <a
+              href="patient.html"
+              class="hover:underline hover:text-yellow-300 w-full sm:w-auto text-center"
+              >Patients</a
+            >
+
+            <a
+              href="profile.html"
+              class="hover:underline hover:text-yellow-300 w-full sm:w-auto text-center"
+              >Profile</a
+            >
+
+            <a
+              href="index.html"
+              class="hover:underline hover:text-yellow-300 w-full sm:w-auto text-center"
+              >Logout</a
+            >
+          </nav>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="pt-24 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="bg-white/60 backdrop-blur-md rounded-xl shadow-2xl p-10 min-h-[70vh]"
+        >
+          <h2 class="text-3xl font-bold mb-6 text-center text-blue-900">
+            Upcoming Appointments
+          </h2>
+
+          <!-- Appointment Cards -->
+          <div
+            id="appointments"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          ></div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Animated Modal -->
+    <div
+      id="modal"
+      class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
+    >
+      <div
+        id="modalBox"
+        class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 relative transform scale-95 opacity-0 transition-all duration-300"
+      >
+        <!-- Close Button -->
+        <button
+          onclick="closeModal()"
+          class="absolute top-3 right-3 text-gray-500 hover:text-red-500 transition"
+        >
+          ✖
+        </button>
+
+        <!-- Patient Name -->
+        <h3
+          id="modalName"
+          class="text-2xl font-bold text-blue-900 mb-1 text-center"
+        ></h3>
+
+        <!-- Disease Tag -->
+        <p
+          id="modalDisease"
+          class="text-sm text-white bg-red-500 px-3 py-1 rounded-full text-center inline-block mb-4"
+        ></p>
+
+        <hr class="border-gray-300 mb-4" />
+
+        <!-- Appointment Info -->
+        <div class="space-y-2 text-gray-700">
+          <p id="modalDate" class="flex items-center gap-2">📅 <span></span></p>
+          <p id="modalTime" class="flex items-center gap-2">⏰ <span></span></p>
+        </div>
+
+        <hr class="border-gray-300 my-4" />
+
+        <!-- Extra Details -->
+        <div>
+          <h4 class="text-lg font-semibold text-blue-800 mb-2">
+            Additional Details
+          </h4>
+          <p id="modalDetails" class="text-gray-600 leading-relaxed"></p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      feather.replace();
+
+      const appointments = [
+        {
+          name: "Serah David",
+          date: "10/08/2025",
+          time: "10:30 AM",
+          disease: "Heart Disease",
+          details: "Age: 45, Contact: 9876543210, Notes: Needs ECG check-up.",
+        },
+        {
+          name: "Nandu suresh",
+          date: "12/08/2025",
+          time: "2:00 PM",
+          disease: "Migraine",
+          details: "Age: 32, Contact: 9123456789, Notes: Review medication.",
+        },
+        {
+          name: "Remya Krishnan",
+          date: "13/08/2025",
+          time: "11:00 AM",
+          disease: "Skin Allergy",
+          details: "Age: 28, Contact: 9988776655, Notes: Avoid dairy.",
+        },
+        {
+          name: "Vinayak c",
+          date: "14/08/2025",
+          time: "9:30 AM",
+          disease: "Fever",
+          details: "Age: 19, Contact: 9090909090, Notes: Monitor temperature.",
+        },
+        {
+          name: "Vibin M",
+          date: "15/08/2025",
+          time: "1:00 PM",
+          disease: "Hearing Loss",
+          details: "Age: 52, Contact: 8877665544, Notes: Hearing test needed.",
+        },
+        {
+          name: "Vaishnavi S",
+          date: "16/08/2025",
+          time: "3:15 PM",
+          disease: "Fracture",
+          details: "Age: 40, Contact: 7766554433, Notes: X-ray follow-up.",
+        },
+        {
+          name: "Anupama M",
+          date: "17/08/2025",
+          time: "10:00 AM",
+          disease: "Kidney Stone",
+          details: "Age: 37, Contact: 6655443322, Notes: Drink more water.",
+        },
+        {
+          name: "Amala Thomas",
+          date: "18/08/2025",
+          time: "11:45 AM",
+          disease: "Pregnancy",
+          details: "Age: 29, Contact: 9988223344, Notes: Ultrasound check.",
+        },
+      ];
+
+      const container = document.getElementById("appointments");
+
+      appointments.forEach((appt) => {
+        const card = document.createElement("div");
+        card.className =
+          "p-6 bg-white/70 rounded-lg shadow hover:shadow-lg transition cursor-pointer";
+        card.innerHTML = `
+        <h3 class="text-xl font-semibold text-blue-900 mb-2">${appt.name}</h3>
+        <p class="text-gray-700">Date: ${appt.date}</p>
+        <p class="text-gray-700">Time: ${appt.time}</p>
+        <p class="text-gray-700">Disease: ${appt.disease}</p>
+      `;
+        card.onclick = () => openModal(appt);
+        container.appendChild(card);
+      });
+
+      function openModal(appt) {
+        document.getElementById("modalName").innerText = appt.name;
+        document.getElementById("modalDate").querySelector("span").innerText =
+          appt.date;
+        document.getElementById("modalTime").querySelector("span").innerText =
+          appt.time;
+        document.getElementById("modalDisease").innerText = appt.disease;
+        document.getElementById("modalDetails").innerText = appt.details;
+
+        const modal = document.getElementById("modal");
+        const modalBox = document.getElementById("modalBox");
+
+        modal.classList.remove("hidden");
+
+        setTimeout(() => {
+          modalBox.classList.remove("scale-95", "opacity-0");
+          modalBox.classList.add("scale-100", "opacity-100");
+        }, 10);
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("modal");
+        const modalBox = document.getElementById("modalBox");
+
+        modalBox.classList.add("scale-95", "opacity-0");
+        modalBox.classList.remove("scale-100", "opacity-100");
+
+        setTimeout(() => {
+          modal.classList.add("hidden");
+        }, 200);
+      }
+
+      document.getElementById("modal").addEventListener("click", function (e) {
+        if (e.target.id === "modal") {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        cursor: url("https://cur.cursors-4u.net/cursors/cur-2/cur116.cur"), auto;
+      }
+    </style>
+    <script>
+      function updateTime() {
+        const now = new Date();
+        document.getElementById("currentTime").innerText =
+          now.toLocaleTimeString();
+        document.getElementById("currentDate").innerText = now.toDateString();
+      }
+      setInterval(updateTime, 1000);
+    </script>
+  </head>
+  <body
+    onload="updateTime()"
+    class="relative min-h-screen font-sans overflow-x-hidden"
+  >
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://media.istockphoto.com/id/1143688212/vector/graph-and-health-care-abstract-background.jpg?s=612x612&w=0&k=20&c=QnA9M9IgOefP4QaBBa0PZ4lrzHfT9t4tCb7_SxL66Rg="
+        alt="Hospital Background"
+        class="w-full h-full object-cover blur-sm brightness-75"
+      />
+    </div>
+
+    <!-- Main Container -->
+    <div
+      class="relative z-10 min-h-screen flex items-center justify-center px-4 py-10"
+    >
+      <div
+        class="bg-white/60 backdrop-blur-md rounded-xl shadow-2xl p-10 max-w-7xl w-full flex flex-col justify-between"
+      >
+        <!-- Header Section -->
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center space-x-4">
+            <img
+              src="images/doc.png"
+              alt="Doctor Icon"
+              class="w-16 h-16 rounded-full shadow"
+            />
+            <div>
+              <h1 class="text-3xl font-bold text-blue-800">Doctor Dashboard</h1>
+              <p class="text-blue-600 text-base">
+                Welcome back, <strong>VISHNU</strong>!
+              </p>
+            </div>
+          </div>
+          <div class="text-right text-sm text-blue-900">
+            <div id="currentDate"></div>
+            <div id="currentTime" class="font-bold text-lg"></div>
+          </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+          <div class="bg-white/70 rounded-lg p-6 shadow-md text-center">
+            <h2 class="text-2xl font-semibold text-blue-700">8</h2>
+            <p class="text-sm text-blue-900">Appointments Today</p>
+          </div>
+          <div class="bg-white/70 rounded-lg p-6 shadow-md text-center">
+            <h2 class="text-2xl font-semibold text-blue-700">15</h2>
+            <p class="text-sm text-blue-900">Patients Checked</p>
+          </div>
+          <div class="bg-white/70 rounded-lg p-6 shadow-md text-center">
+            <h2 class="text-2xl font-semibold text-blue-700">3</h2>
+            <p class="text-sm text-blue-900">Upcoming Surgeries</p>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
+          <a
+            href="appointment.html"
+            class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition shadow-md"
+          >
+            View Appointments
+          </a>
+          <a
+            href="patient.html"
+            class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition shadow-md"
+          >
+            Patient List
+          </a>
+          <a
+            href="profile.html"
+            class="block text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition shadow-md"
+          >
+            Profile
+          </a>
+        </div>
+
+        <!-- Extra Dashboard Widgets -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+          <!-- Recent Patients -->
+          <div class="bg-white/70 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">
+              Recent Patients
+            </h3>
+            <ul class="text-sm text-blue-900 space-y-1">
+              <li>✓ John Doe - Fever</li>
+              <li>✓ Priya Menon - Checkup</li>
+              <li>✓ Rahul Dev - Surgery Follow-up</li>
+              <li>✓ Aisha Khan - Blood Test</li>
+            </ul>
+          </div>
+
+          <!-- Prescription Summary -->
+          <div class="bg-white/70 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">
+              Prescriptions Given
+            </h3>
+            <ul class="text-sm text-blue-900 space-y-1">
+              <li>• Paracetamol - 12</li>
+              <li>• Amoxicillin - 8</li>
+              <li>• Vitamin D - 6</li>
+              <li>• Ibuprofen - 4</li>
+            </ul>
+          </div>
+
+          <!-- Notifications -->
+          <div class="bg-white/70 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">
+              Notifications
+            </h3>
+            <ul class="text-sm text-blue-900 space-y-1">
+              <li>🔔 Surgery scheduled at 4:00 PM</li>
+              <li>🔔 New message from Admin</li>
+              <li>🔔 Lab reports updated</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Messages & Schedule -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Messages -->
+          <div class="bg-white/70 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">Messages</h3>
+            <p class="text-sm text-blue-900">You have 3 unread messages.</p>
+            <button class="mt-2 text-xs text-blue-700 underline">
+              View Inbox
+            </button>
+          </div>
+
+          <!-- Schedule -->
+          <div class="bg-white/70 p-4 rounded-lg shadow-md">
+            <h3 class="text-lg font-semibold text-blue-800 mb-2">
+              Today's Schedule
+            </h3>
+            <ul class="text-sm text-blue-900">
+              <li>10:00 AM - Surgery: Appendectomy</li>
+              <li>12:00 PM - General OP Consultation</li>
+              <li>3:00 PM - Pediatric Consultation</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="text-xs text-center text-blue-700 mt-10">
+          &copy; 2025 HospitalCare. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

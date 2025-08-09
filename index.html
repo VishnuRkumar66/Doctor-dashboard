@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        cursor: url("https://cur.cursors-4u.net/cursors/cur-2/cur116.cur"), auto;
+      }
+    </style>
+  </head>
+  <body class="relative min-h-screen font-sans overflow-hidden">
+    <div class="absolute inset-0">
+      <img
+        src="https://media.istockphoto.com/id/1143688212/vector/graph-and-health-care-abstract-background.jpg?s=612x612&w=0&k=20&c=QnA9M9IgOefP4QaBBa0PZ4lrzHfT9t4tCb7_SxL66Rg="
+        alt="Hospital Background"
+        class="w-full h-full object-cover blur-sm brightness-50"
+      />
+    </div>
+    <div
+      class="relative z-10 flex items-center justify-center min-h-screen px-4"
+    >
+      <div
+        class="shadow-2xl rounded-xl p-8 w-full max-w-md bg-white/10 backdrop-blur-lg border border-white/20"
+      >
+        <div class="text-center mb-6">
+          <img
+            src="images/image.png"
+            alt="Doctor Icon"
+            class="w-16 mx-auto mb-3 rounded-3xl border-2 border-white shadow"
+          />
+          <h2 class="text-2xl font-bold text-white">Doctor Login</h2>
+          <p class="text-blue-100 text-sm">Please enter your credentials</p>
+        </div>
+        <form class="space-y-4">
+          <div>
+            <label for="email" class="block text-blue-100 font-medium mb-1"
+              >Email</label
+            >
+            <input
+              type="email"
+              id="email"
+              placeholder="doctor@example.com"
+              class="w-full px-4 py-2 bg-white/20 text-white placeholder-white/70 border border-white/30 rounded focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-300"
+              required
+            />
+          </div>
+          <div>
+            <label for="password" class="block text-blue-100 font-medium mb-1"
+              >Password</label
+            >
+            <input
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              class="w-full px-4 py-2 bg-white/20 text-white placeholder-white/70 border border-white/30 rounded focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-300"
+              required
+            />
+          </div>
+          <div class="flex items-center justify-between text-sm text-blue-100">
+            <label class="flex items-center">
+              <input type="checkbox" class="mr-2 accent-teal-500" />
+              Remember me
+            </label>
+            <a href="#" class="hover:underline text-teal-200"
+              >Forgot password?</a
+            >
+          </div>
+          <a
+            href="dashboard.html"
+            class="block text-center bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-600 hover:to-cyan-600 text-white font-semibold py-2 px-4 rounded transition duration-300"
+          >
+            Login
+          </a>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

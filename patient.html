@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        cursor: url("https://cur.cursors-4u.net/cursors/cur-2/cur116.cur"), auto;
+      }
+    </style>
+  </head>
+  <body onload="loadDummyPatients()" class="relative min-h-screen font-sans">
+    <!-- Background -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://media.istockphoto.com/id/1143688212/vector/graph-and-health-care-abstract-background.jpg?s=612x612&w=0&k=20&c=QnA9M9IgOefP4QaBBa0PZ4lrzHfT9t4tCb7_SxL66Rg="
+        alt="Healthcare background"
+        class="w-full h-full object-cover blur-sm brightness-75"
+      />
+    </div>
+
+    <!-- Navbar -->
+    <header
+      class="fixed top-0 left-0 w-full z-30 bg-blue-900/80 backdrop-blur-md text-white shadow-md"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <h1 class="text-2xl font-semibold">Doctor's Dashboard</h1>
+        <nav class="flex flex-wrap gap-2 sm:space-x-6 text-sm font-medium">
+          <a
+            href="dashboard.html"
+            class="hover:underline hover:text-yellow-300"
+          >
+            Dashboard
+          </a>
+          <a
+            href="appointment.html"
+            class="hover:underline hover:text-yellow-300"
+          >
+            Appointments
+          </a>
+          <a
+            href="patient.html"
+            class="bg-yellow-300 text-blue-900 font-bold px-4 py-2 rounded-lg shadow-inner hover:bg-yellow-400 transition"
+          >
+            Patients
+          </a>
+          <a href="profile.html" class="hover:underline hover:text-yellow-300">
+            Profile
+          </a>
+          <a href="index.html" class="hover:underline hover:text-yellow-300">
+            Logout
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Patient Section -->
+    <main
+      class="relative z-10 max-w-4xl mx-auto pt-32 backdrop-blur-lg bg-white/30 shadow-xl p-6 rounded-xl border border-white/40"
+    >
+      <h1 class="text-3xl font-bold mb-6 text-white drop-shadow text-center">
+        Patient Management
+      </h1>
+      <h2
+        class="text-xl font-semibold mb-4 text-gray-100 drop-shadow text-center"
+      >
+        Patient List
+      </h2>
+      <ul id="patientList" class="space-y-4"></ul>
+    </main>
+
+    <!-- Modal -->
+    <div
+      id="viewModal"
+      class="hidden fixed inset-0 z-40 bg-black/50 flex items-center justify-center"
+      onclick="closeModal(event)"
+    >
+      <div
+        class="bg-white p-6 rounded-lg w-[90%] max-w-md shadow-xl"
+        onclick="event.stopPropagation()"
+      >
+        <div class="flex flex-col items-center">
+          <img
+            id="modalImage"
+            src=""
+            alt="Patient Photo"
+            class="w-32 h-32 rounded-full mb-4 shadow-lg"
+          />
+          <h2 class="text-xl font-bold mb-2">Patient Details</h2>
+          <p
+            id="modalContent"
+            class="whitespace-pre-line text-gray-800 text-center"
+          ></p>
+          <button
+            onclick="closeModal()"
+            class="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      const patients = [
+        {
+          id: 1,
+          name: "John Doe",
+          age: 34,
+          disease: "Flu",
+          gender: "Male",
+          phone: "123-456-7890",
+          address: "New York",
+          photo: "https://randomuser.me/api/portraits/men/1.jpg",
+        },
+        {
+          id: 2,
+          name: "Jane Smith",
+          age: 27,
+          disease: "Allergy",
+          gender: "Female",
+          phone: "987-654-3210",
+          address: "Los Angeles",
+          photo: "https://randomuser.me/api/portraits/women/2.jpg",
+        },
+        {
+          id: 3,
+          name: "Alice Johnson",
+          age: 42,
+          disease: "Diabetes",
+          gender: "Female",
+          phone: "555-123-4567",
+          address: "Chicago",
+          photo: "https://randomuser.me/api/portraits/women/3.jpg",
+        },
+        {
+          id: 4,
+          name: "Robert Brown",
+          age: 50,
+          disease: "Hypertension",
+          gender: "Male",
+          phone: "222-333-4444",
+          address: "Houston",
+          photo: "https://randomuser.me/api/portraits/men/4.jpg",
+        },
+        {
+          id: 5,
+          name: "Emily Davis",
+          age: 29,
+          disease: "Asthma",
+          gender: "Female",
+          phone: "999-888-7777",
+          address: "Seattle",
+          photo: "https://randomuser.me/api/portraits/women/5.jpg",
+        },
+      ];
+
+      function loadDummyPatients() {
+        const list = document.getElementById("patientList");
+        list.innerHTML = "";
+
+        patients.forEach((patient) => {
+          const li = document.createElement("li");
+          li.className =
+            "bg-gradient-to-br from-white/80 to-blue-100/60 backdrop-blur-sm p-5 rounded-xl shadow-md flex justify-between items-center hover:shadow-xl transition";
+
+          li.innerHTML = `
+            <div>
+              <p class="font-semibold text-gray-800">${patient.name}</p>
+              <p class="text-sm text-gray-700">Age: ${patient.age} | Disease: ${patient.disease}</p>
+            </div>
+            <div class="space-x-2">
+              <button onclick="viewPatient(${patient.id})" class="bg-emerald-600 text-white px-3 py-1 rounded hover:bg-emerald-700 transition">View</button>
+              <button onclick="confirmDelete(${patient.id})" class="bg-rose-600 text-white px-3 py-1 rounded hover:bg-rose-700 transition">Delete</button>
+            </div>
+          `;
+          list.appendChild(li);
+        });
+      }
+
+      function viewPatient(id) {
+        const patient = patients.find((p) => p.id === id);
+        if (patient) {
+          document.getElementById("modalImage").src = patient.photo;
+          document.getElementById(
+            "modalContent"
+          ).innerText = `Name: ${patient.name}
+Age: ${patient.age}
+Gender: ${patient.gender}
+Disease: ${patient.disease}
+Phone: ${patient.phone}
+Address: ${patient.address}`;
+          document.getElementById("viewModal").classList.remove("hidden");
+        }
+      }
+
+      function closeModal(event) {
+        const modal = document.getElementById("viewModal");
+        if (!event || event.target === modal) {
+          modal.classList.add("hidden");
+        }
+      }
+
+      function confirmDelete(id) {
+        const patient = patients.find((p) => p.id === id);
+        if (
+          patient &&
+          confirm(`Are you sure you want to delete ${patient.name}?`)
+        ) {
+          deletePatient(id);
+        }
+      }
+
+      function deletePatient(id) {
+        const index = patients.findIndex((p) => p.id === id);
+        if (index !== -1) {
+          patients.splice(index, 1);
+          loadDummyPatients();
+        }
+      }
+    </script>
+  </body>
+</html>
